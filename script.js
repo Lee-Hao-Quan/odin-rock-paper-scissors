@@ -1,6 +1,9 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let humanScoreCounter = document.getElementById('human-score');
+let computerScoreCounter = document.getElementById('computer-score');
+
 const choiceButtons = document.querySelectorAll('.human-choice');
 const verdictMsg = document.getElementById('verdict');
 
@@ -46,6 +49,7 @@ function playRound(computerChoice, humanChoice) {
             You lose! ${computerChoice} beats ${humanChoice}
         `;
         computerScore++;
+        computerScoreCounter.textContent = computerScore;
     }
     // Possibilities for human winning
     if ((humanChoice == 'paper' && computerChoice == 'rock') ||
@@ -57,6 +61,7 @@ function playRound(computerChoice, humanChoice) {
             You win! ${humanChoice} beats ${computerChoice}
         `;
         humanScore++;
+        humanScoreCounter.textContent = humanScore;
     }
     console.log('Human Score: ' + humanScore, '\nComputer Score: ' + computerScore);
 }
