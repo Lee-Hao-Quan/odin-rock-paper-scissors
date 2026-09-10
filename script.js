@@ -22,13 +22,10 @@ choiceButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
     humanChoice = e.target.value;
 
-    if (humanChoice == null) {
-        humanChoice = 'quit';
+    if (humanChoice == 'quit') {
+        resetGame();
+        verdictMsg.textContent = "Game resetted successfully"
     }
-    if (!humanChoices.includes(humanChoice)) {
-        console.log('Please choose either rock, paper or scissors');
-    }
-    console.log(humanChoice)
 
     playRound(getComputerChoice(), humanChoice)
 });
@@ -37,7 +34,7 @@ choiceButtons.forEach((button) => {
 
 function playRound(computerChoice, humanChoice) {
     if (computerChoice == humanChoice) {
-        console.log('Tie!');
+        verdictMsg.textContent = 'Tie!'
     }
     // possibilities for human losing
     if ((humanChoice == 'rock' && computerChoice == 'paper') ||
@@ -63,5 +60,20 @@ function playRound(computerChoice, humanChoice) {
         humanScore++;
         humanScoreCounter.textContent = humanScore;
     }
-    console.log('Human Score: ' + humanScore, '\nComputer Score: ' + computerScore);
+
+    if (humanScore === 5){
+        verdictMsg.textContent = "Human Wins!"
+        resetGame()
+    } else if(computerScore === 5){
+        verdictMsg.textContent = "Computer Wins!"
+        resetGame()
+    }
+}
+
+function resetGame(){
+    humanScore = 0;
+    computerScore = 0;
+    
+    humanScoreCounter.textContent = humanScore;
+    computerScoreCounter.textContent = computerScore;
 }
