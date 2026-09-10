@@ -40,7 +40,7 @@ function playRound(computerChoice, humanChoice) {
             Computer choice: ${computerChoice}
             You lose! ${computerChoice} beats ${humanChoice}
         `)
-        computerChoice++
+        computerScore++
     }
 
     // Possibilities for human winning
@@ -57,7 +57,7 @@ function playRound(computerChoice, humanChoice) {
         humanScore++
     }
 
-    console.log(humanScore, computerScore);
+    console.log('Human Score: ' + humanScore, '\nComputer Score: ' + computerScore);
 }
 
 function main() {
@@ -67,7 +67,10 @@ function main() {
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice();
 
-        if (humanSelection == 'quit') running = false;
+        if (humanSelection == 'quit'){
+            running = false;
+            break;
+        }
 
         playRound(computerSelection, humanSelection);
     }
